@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scoreboard Test Firebase</title>
-    <link rel="stylesheet" href="./main.css">
 </head>
 <body>
 
+    <!-- Display the current score -->
     <h1>Score: <span id="score">0</span></h1>
+
+    <!-- Call JavaScript functions  -->
     <button onclick="decreaseScore()">Decrease Score</button>
     <button onclick="increaseScore()">Increase Score</button>
+
+    <br><br>
 
     <input id="name" type="text" placeholder="Enter your name...">
     <button onclick="saveScore()">Save Score</button>
 
     <h2>Scoreboard</h2>
+    <!-- Display our Scoreboard here -->
     <table id="scoreboard">
         <tr>
             <th>Name</th>
@@ -26,10 +31,9 @@
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-    
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <!-- Import Firestore -->
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <!-- Import our JavaScript file -->
     <script src="./main.js"></script>
 </body>
 </html>

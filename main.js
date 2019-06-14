@@ -1,16 +1,19 @@
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyDbfV4-2wk1fU676GF2uQdF7d0NgjtpNR0",
-    authDomain: "fir-scoreboard-e812d.firebaseapp.com",
-    databaseURL: "https://fir-scoreboard-e812d.firebaseio.com",
-    projectId: "fir-scoreboard-e812d",
-    storageBucket: "fir-scoreboard-e812d.appspot.com",
-    messagingSenderId: "706585798152",
-    appId: "1:706585798152:web:f124759abe6427a6"
+    apiKey: "AIzaSyD-M2s_CW6hTEKJaVkK336fVZqPIRCRXBE",
+    authDomain: "fir-scoreboard-eee29.firebaseapp.com",
+    databaseURL: "https://fir-scoreboard-eee29.firebaseio.com",
+    projectId: "fir-scoreboard-eee29",
+    storageBucket: "fir-scoreboard-eee29.appspot.com",
+    messagingSenderId: "221783806177",
+    appId: "1:221783806177:web:f20634f87c385c92"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
+
+// Setup access to the database
+let db = firebase.firestore();
 
 let score = 0;
 
@@ -25,8 +28,10 @@ function decreaseScore() {
 }
 
 function saveScore() {
+    // Get name from input box
     let name = document.getElementById('name').value;
 
+    // Make sure name has a value, if not send alert.
     if(name !== "") {
         // Add a new document in collection "scores"
         db.collection("scores").doc().set({
@@ -45,12 +50,11 @@ function saveScore() {
     }
 }
 
-window.onload = function() {
-    updateScores();
-}
-
 function updateScores() {
+    // Clear current scores in our scoreboard
     document.getElementById('scoreboard').innerHTML = '<tr><th>Name</th><th>Score</th></tr>';
+    
+    // Get the top 5 scores from our scoreboard
     db.collection("scores").orderBy("score", "desc").limit(5).get().then((snapshot) => {
         snapshot.forEach((doc) => {
             document.getElementById('scoreboard').innerHTML += '<tr>' +
@@ -60,3 +64,5 @@ function updateScores() {
         })
     })
 }
+
+window.onload = updateScores();
